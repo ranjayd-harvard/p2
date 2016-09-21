@@ -1,0 +1,52 @@
+.projectHeader {
+  color: "#2e22e2"
+}
+
+p {
+    font-size: 21px;
+    font-weight: 100;
+    margin: 0 0 10px;
+}
+
+.links{
+    font-size: 16px;
+    font-weight: 200;
+    margin: 0 0 10px;
+}
+
+.center {
+  margin: auto;
+}
+
+.formRow {
+  /* width:100%; */
+}
+
+h1.projectHeader {
+  color: #789000;
+  font-weight: 900;
+}
+
+.projectDiv {
+  background-color:#e1e1e1;padding: 5px 15px;
+}
+
+a.refLinks:link {
+  color:#616161;
+}
+
+.password {
+  padding: 10px 20px;
+  width: 100%;
+  background-color: #e1e1e1;
+  font-size: 24px;
+  font-weight: 300;
+  color: crimson;
+  height: 100px;
+  vertical-align: middle;
+}
+
+.container {
+  margin: auto;
+  text-align: center;
+}
