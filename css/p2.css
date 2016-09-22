@@ -65,6 +65,7 @@ hr {
   /* height: 100px; */
   vertical-align: middle;
   border: 3px dashed #d1d1d1;
+  word-wrap: break-word;
 }
 
 .container {
