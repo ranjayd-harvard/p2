@@ -34,7 +34,7 @@
       <div class="page-header">
         <h1 class="projectHeader">Password Generator</h1>
         <p class="lead">Project <strong>P2</strong> for class <strong>Dynamic Web Applications(dwa15) </strong> </p>
-        <p>This application generates a random password for you separated with character of your choice. You can also add the special characters and numbers at the end of the password. Please fill out the form below and hit submit button.</p>
+        <p>This application generates a random password for you separated with character of your choice. You can also add the special characters and numbers at the end of the password. Please fill out the form below and hit submit button. Please <a href="https://github.com/ranjayd-harvard/p2"><strong>click here</strong></a> for more details on source for this project.</p>
 
       </div>
 
