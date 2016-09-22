@@ -7,7 +7,7 @@ This is the second project(p2) for the dwa15 class. This project is a single-pag
   - numbers or
   - other special characters in the password.
 
-Upon Submission of the form it generates and displays the password. This random password can be separated with character of your choice. You can also add the special characters and numbers at the end of the password. 
+Upon Submission of the form it generates and displays the password. This random password can be separated with character of your choice. You can also add the special characters and numbers at the end of the password.
 
 It is built per the instructions of the demo ( http://dwa15.com/Projects.../P2).
 
@@ -19,6 +19,6 @@ Project Details:
 * very light javascript and CSS is also used to make the page look clean
 * For the layout of the page, i have used the bootstrap grid technique ( more details on this https://getbootstrap.com/examples/grid/ )
 * Demo url for this project is: http://p2.ranjayd.me
-* Link to the Video: https://youtu.be/IG-e8sjBkog
+* Link to the Video: https://www.youtube.com/watch?v=-zx9FxN_oWQ
 
 Words list is copied from : http://www-01.sil.org/linguistics/wordlists/english/wordlist/wordsEn.txt
