@@ -22,6 +22,8 @@ if ($handle) {
   echo "Error opening words file: words.txt";
 }
 
+// at this point, the words array is fully populated with all words from text file
+
 //print_r($words);
 
 // function to get random character from a string
