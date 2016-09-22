@@ -1,9 +1,17 @@
 <?php
 
 //var_dump($_GET);
+//initialize input values
+$number_of_words = empty($_GET['words']) ? '3' : htmlspecialchars($_GET['words']);
+$words_separator = empty($_GET['separator']) ? '-' : htmlspecialchars($_GET['separator']);
+$need_numbers = empty($_GET['needNumbers']) ? 'N' : htmlspecialchars($_GET['needNumbers']);
+$need_special_chars = empty($_GET['needSpclChrs']) ? 'N' : htmlspecialchars($_GET['needSpclChrs']);
+$pwd_case = empty($_GET['pwdCase']) ? 'lowerCase' : htmlspecialchars($_GET['pwdCase']);
+
 
 $words = [];
 
+// read flile and load words array
 $handle = fopen("words.txt", "r");
 if ($handle) {
   while (( $line = fgets($handle)) !== false ) {
@@ -16,6 +24,7 @@ if ($handle) {
 
 //print_r($words);
 
+// function to get random character from a string
 function genrateRandCharFromString ($str) {
 
   if ($str == "") {
@@ -30,53 +39,68 @@ function genrateRandCharFromString ($str) {
 }
 
 
-function genrateRandomWords ($length, $words, $sep) {
+// function to generate random password
+function genrateRandomWords ($length, $words, $sep, $word_case) {
 
   $randomString = '';
   for ($i=0;$i < $length; $i++){
     //$randomString .= 'A';
     $randItem = array_rand($words);
+    $word = $words[$randItem];
+
+    switch ($word_case) {
+    case "upperCase":
+      $word = strtoupper($word);
+      break;
+    case "lowerCase":
+      $word = strtolower($word);
+      break;
+    case "camelCase":
+      $word = ucwords($word);
+      break;
+    default:
+      $word = $word;
+    }
+
     if ( $i == ($length -1) ) {
-      $randomString .= $words[$randItem];
+      $randomString .= $word;
     } else {
-      $randomString .= $words[$randItem].$sep;
+      $randomString .= $word.$sep;
     }
   }
   return $randomString;
 }
 
-//echo $_GET['words']."<br>";
 
-if ( !ctype_digit($_GET['words'])) {
+// Perform form input validations and populate password
+if ( !ctype_digit($number_of_words)) {
   $password = "Please specify number of words in the password !!!<br>This field can't be a string.";
 } else {
-    if ( empty ($_GET['words']) || $_GET['words'] == "" ) {
+    if ( empty ($number_of_words) || $number_of_words == "" ) {
       $password = "Please specify number of words in the password !!!<br>This field can't be empty or null.";
     } else {
       if ( $_GET['words'] > "9" ) {
         $password = "You can only have 9 words in password !!!";
       } else {
-        $password = genrateRandomWords($_GET['words'],$words, $_GET['separator']);
+        $password = genrateRandomWords($number_of_words,$words, $words_separator,$pwd_case);
 
-        if ( isset($_GET['needNumbers']) &&  $_GET['needNumbers'] == "Y" ) {
-          $password .= genrateRandCharFromString('0123456789');
+        if ( $need_numbers == "Y" ) {
+          $numbers_str = genrateRandCharFromString('0123456789');
+        } else {
+          $numbers_str = "";
         }
 
-        if ( isset($_GET['needSpclChrs']) &&  $_GET['needSpclChrs'] == "Y" ) {
-          $password .= genrateRandCharFromString('!@#$%^&*()_+');
+
+        if ( $need_special_chars == "Y" ) {
+          $special_chr_str = genrateRandCharFromString('!@#$%^&*()_+<>{}[]+-');
+        } else {
+          $special_chr_str = "";
         }
 
-        if ( isset($_GET['upperCase']) &&  $_GET['upperCase'] == "Y" ) {
-          $password = strtoupper($password);
-        }
 
-        if ( isset($_GET['lowerCase']) &&  $_GET['lowerCase'] == "Y" ) {
-          $password = strtolower($password);
-        }
 
-        if ( isset($_GET['camelCase']) &&  $_GET['camelCase'] == "Y" ) {
-          $password = ucwords($password);
-        }
+
+      $password .= $numbers_str.$special_chr_str;
 
       }
     }

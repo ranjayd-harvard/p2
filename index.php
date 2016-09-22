@@ -34,63 +34,61 @@
       <div class="page-header">
         <h1 class="projectHeader">Password Generator</h1>
         <p class="lead">Project <strong>P2</strong> for class <strong>Dynamic Web Applications(dwa15) </strong> </p>
+        <p>This application generates a random password for you separated with character of your choice. You can also add the special characters and numbers at the end of the password. Please fill out the form below and hit submit button.</p>
+
       </div>
 
 
 
     <div class="row">
         <div class="col-md-12">
-          <h2>Specify Details for your password complexities:</h2>
-          <p><span class="error">* required field.</span></p>
           <form method="GET" action="index.php" class="form-inline">
             <div class="form-group">
-              <label for="words"> How many words you need in password? ( max: 9 , default: 3) </label>
-              <input type="text" name="words" value="3" size="1">
+              <label for="words"> How many words you need in password?
+              <input type="text" name="words" value="<?php echo htmlspecialchars($number_of_words);?>" size="1">
+              <span class="labelHelp"> ( max: 9 , default: 3) <span> </label>
               <span class="error">*</span>
             </div>
             <br>
             <div class="form-group">
-              <label for="separator"> words separator? ( default: ( - dash )  </label>
-              <input type="text" name="separator" value="-" size="1">
+              <label for="separator"> words separator
+              <input type="text" name="separator" value="<?php echo htmlspecialchars($words_separator);?>" size="1">
+              <span class="labelHelp"> ( default value is dash - ) <span> </label>
               <span class="error">*</span>
             </div>
             <br>
             <div class="form-group">
-                    <label for="needNumbers">  Needs numbers? </label>
-                    <input type="checkbox" name="needNumbers" value="Y" />
+                <label for="needNumbers">  Needs numbers? </label>
+                <input type="checkbox" name="needNumbers" <?php if (isset($need_numbers) && $need_numbers=="Y") echo "checked";?> value="Y" />
             </div>
             <br>
             <div class="form-group">
-                    <label for="needSpclChrs">  Needs special characters? </label>
-                    <input type="checkbox" name="needSpclChrs" value="Y" />
+                <label for="needSpclChrs">  Needs special characters? </label>
+                <input type="checkbox" name="needSpclChrs" <?php if (isset($need_special_chars) && $need_special_chars=="Y") echo "checked";?> value="Y" />
             </div>
             <br>
+
             <div class="form-group">
-                    <label for="upperCase">  Uppercase? </label>
-                    <input type="checkbox" name="upperCase" value="Y" />
+              <label>Case for password string:
+                <label class="checkbox-inline"><input type="radio" name="pwdCase" <?php if (isset($pwd_case) && $pwd_case=="upperCase") echo "checked";?> value="upperCase"> Uppercase </label>
+                <label class="checkbox-inline"><input type="radio" name="pwdCase" <?php if (isset($pwd_case) && $pwd_case=="lowerCase") echo "checked";?> value="lowerCase"> LowerCase </label>
+                <label class="checkbox-inline"><input type="radio" name="pwdCase" <?php if (isset($pwd_case) && $pwd_case=="camelCase") echo "checked";?> value="camelCase"> CamelCase </label>
+              </label>
             </div>
             <br>
-            <div class="form-group">
-                    <label for="lowerCase">  Lowercase? </label>
-                    <input type="checkbox" name="lowerCase" value="Y" />
-            </div>
             <br>
-            <div class="form-group">
-                    <label for="camelCase">  CamelCase? </label>
-                    <input type="checkbox" name="camelCase" value="Y" />
-            </div>
-            <br>
-            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary"> 	&#160; 	&#160;
+            <input type="submit" name="another" value="Give me another one!" class="btn btn-danger">
           </form>
         </div>
       </div>
-
-      <h3>Generated Password</h3>
+      <hr>
+      <h3 class="formHeader">Generated Password</h3>
       <div class="row">
           <div class="col-md-2">
           </div>
           <div class="col-md-8">
-            <div class="password"><?php echo $password;?>
+            <div class="formHeader password"><?php echo $password;?>
             </div>
           </div>
           <div class="col-md-2">
